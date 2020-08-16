@@ -8,18 +8,19 @@ function App() {
   const [questionVisible, setQuestionVisible] = useState(false);
 
 
-  const player = useRef<ReactPlayerProps>(null);
+  const player = useRef<ReactPlayer>(null);
 
 
   function handleQuiz () {
-    if (player && player.current) {
-      console.log(player.current.progressInterval)
-    }
+    console.log('entrou aqui');
+    // if (player && player.current) {
+    //   console.log(player.current.getCurrentTime());
+    // }
   }
   return (
     <div className="container">
       <div className="video-container">
-        <ReactPlayer url="https://www.youtube.com/watch?v=NU2GY8_rX60" playing={play} onPlay={() => !setPlay} controls={true} width="50%" onProgress={() => handleQuiz} ref={player}/>
+        <ReactPlayer url="https://www.youtube.com/watch?v=NU2GY8_rX60" playing={play} onPlay={() => !setPlay} controls={true} width="50%" onProgress={handleQuiz} progressInterval={1000} ref={player}/>
       </div>
       {!questionVisible ? null :
       <div className="quiz-container">
