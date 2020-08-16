@@ -14,7 +14,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 1;
 }
 
+.quiz-container {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    opacity: 70%;
+}
+.question {
+    background-color: #eef1ea;
+    width: 50%;
+    height: 25rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.question-label {
+    margin-top: 8rem;
+    opacity: 100%;
+}
+.options {
+    opacity: 100%;
+}
 
