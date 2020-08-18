@@ -21,14 +21,14 @@ function App() {
       } 
     }
   }
-  function wrongAnswerSelected () {
+  function wrongAnswerSelectedFirstQuestion () {
     setIsFirstQuestionAnswered(true);
     setFirstQuestionVisible(false);
     if (player.current){
     player.current.play();
     }
   }
-  function rightAnswerSelected () {
+  function rightAnswerSelectedFirstQuestion () {
     setIsFirstQuestionAnswered(true);
     setFirstQuestionVisible(false);
     if (player.current){
@@ -48,10 +48,10 @@ function App() {
           <div className="question">
             <p className="question-label">Quanto tempo durou a revolução francesa?</p>
             <div className='buttons-container'>
-              <button className="options" onClick={wrongAnswerSelected}>A. 12 anos</button>
-              <button className="options" onClick={rightAnswerSelected}>B. 10 anos</button>
-              <button className="options" onClick={wrongAnswerSelected}>C. 20 anos</button>
-              <button className="options" onClick={wrongAnswerSelected}>D. 8 anos</button>
+              <button className="options" onClick={wrongAnswerSelectedFirstQuestion}>A. 12 anos</button>
+              <button className="options" onClick={rightAnswerSelectedFirstQuestion}>B. 10 anos</button>
+              <button className="options" onClick={wrongAnswerSelectedFirstQuestion}>C. 20 anos</button>
+              <button className="options" onClick={wrongAnswerSelectedFirstQuestion}>D. 8 anos</button>
             </div>
           </div>
         </div>
