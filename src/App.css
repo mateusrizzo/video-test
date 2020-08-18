@@ -8,8 +8,16 @@
     display: flex;
     position: relative;
 }
+.title-container{
+    width: 100%;
+    font-family: 'Raleway';
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+}
 .page-title {
-    justify-items: center;
+    justify-self: center;
+    margin-bottom: 2rem;
 }
 .video-container {
     position: absolute;
@@ -27,6 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
     z-index: 2;
     margin-top: 5rem;
 }
@@ -38,10 +47,35 @@
     align-items: center;
     justify-content: center;
     align-self: center;
+    font-family: 'Roboto';
+    font-size: 2rem;
 }
 
 .question-label {
-    margin-top: 8rem;
+    margin-top: 6rem;
 }
+.buttons-container {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.options {
+    border-style: solid;
+    text-decoration: none;
+    margin: 0.9rem;
+    width: 40%;
+    height: 2.5rem;
+    font-family: 'Roboto';
+    font-size: 1rem;
+    background: none;
+    border-width: 0.1rem;
+    border-radius: 0.4rem;
+    color: #000;
+    border-color: #000
+}
+
 
 
