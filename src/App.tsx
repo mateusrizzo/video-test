@@ -6,20 +6,31 @@ import paris from './assets/videos/Paris.mp4';
 
 
 function App() {
-  // const [time, setTime] = useState<number>();
-  const [questionVisible, setQuestionVisible] = useState(false);
-
-
+  const [firstQuestionVisible, setFirstQuestionVisible] = useState(false);
+  const [isFirstQuestion, setIsFirstQuestion] = useState(true);
   const player = useRef<HTMLVideoElement>(null);
 
 
   function handleQuiz () {
     if (player.current){
-      if(player.current.currentTime >= 5 && questionVisible === false) {
-        setQuestionVisible(true);
+      if(player.current.currentTime >= 5 && firstQuestionVisible === false && isFirstQuestion === true) {
+        setIsFirstQuestion(false);
+        setFirstQuestionVisible(true);
         player.current.pause();
       } 
     }
+  }
+  function wrongAnwserSelected () {
+    setFirstQuestionVisible(false);
+    if (player.current){
+    player.current.play();
+    }
+  }
+  function rightAnwserSelected () {
+    setFirstQuestionVisible(false);
+    if (player.current){
+      player.current.play();
+      }
   }
   return (
     <div className="container">
@@ -29,15 +40,15 @@ function App() {
       <div className="video-container">
         <video controls src={paris} ref={player} onTimeUpdate={handleQuiz}/>
       </div>
-      {!questionVisible ? null :
+      {!firstQuestionVisible ? null :
         <div className="quiz-container">
           <div className="question">
             <p className="question-label">Quanto tempo durou a revolução francesa?</p>
             <div className='buttons-container'>
-              <button className="options">A. 12 anos</button>
-              <button className="options">B. 10 anos</button>
-              <button className="options">C. 20 anos</button>
-              <button className="options">D. 8 anos</button>
+              <button className="options" onClick={wrongAnwserSelected}>A. 12 anos</button>
+              <button className="options" onClick={rightAnwserSelected}>B. 10 anos</button>
+              <button className="options" onClick={wrongAnwserSelected}>C. 20 anos</button>
+              <button className="options" onClick={wrongAnwserSelected}>D. 8 anos</button>
             </div>
           </div>
         </div>
