@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import './App.css';
 
-import paris from './assets/videos/paris.mp4';
+import paris from './assets/videos/Paris.mp4';
 
 
 function App() {
