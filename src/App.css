@@ -8,6 +8,9 @@
     display: flex;
     position: relative;
 }
+.page-title {
+    justify-items: center;
+}
 .video-container {
     position: absolute;
     width: 100%;
@@ -15,6 +18,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1;
+    margin-top: 5rem;
 }
 
 .quiz-container {
@@ -24,12 +28,12 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    opacity: 70%;
+    margin-top: 5rem;
 }
 .question {
-    background-color: #eef1ea;
-    width: 50%;
-    height: 25rem;
+    background: rgba(211,211,211, 0.9);
+    width: 60rem;
+    height: 33.9rem;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -38,9 +42,6 @@
 
 .question-label {
     margin-top: 8rem;
-    opacity: 100%;
 }
-.options {
-    opacity: 100%;
-}
+
 
