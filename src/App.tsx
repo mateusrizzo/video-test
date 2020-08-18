@@ -6,7 +6,7 @@ import paris from './assets/videos/paris.mp4';
 
 
 function App() {
-  // const [play, setPlay] = useState(false);
+  // const [time, setTime] = useState<number>();
   const [questionVisible, setQuestionVisible] = useState(false);
 
 
@@ -14,27 +14,30 @@ function App() {
 
 
   function handleQuiz () {
-    console.log('entrou aqui');
-    // if (player && player.current) {
-    //   console.log(player.current.getCurrentTime());
-    // }
+    if (player.current){
+      if(player.current.currentTime >= 5 && questionVisible === false) {
+        setQuestionVisible(true);
+        player.current.pause();
+      } 
+    }
   }
   return (
     <div className="container">
+      <h1 className="page-title">Revolução Francesa</h1>
       <div className="video-container">
-        <video controls src={paris} ref={player}/>
+        <video controls src={paris} ref={player} onTimeUpdate={handleQuiz}/>
       </div>
-      {!questionVisible ? null :
+      {/* {!questionVisible ? null : */}
         <div className="quiz-container">
           <div className="question">
-            <p className="question-label">Qual o primeiro nome do Jacquin?</p>
-            <button className="options">A. Jacques</button>
-            <button className="options">B. Pierre</button>
-            <button className="options">C. Erick</button>
-            <button className="options">D. Genevieve</button>
+            <p className="question-label">Quanto tempo durou a revolução francesa?</p>
+            <button className="options">A. 12 anos</button>
+            <button className="options">B. 10 anos</button>
+            <button className="options">C. 20 anos</button>
+            <button className="options">D. 8 anos</button>
           </div>
         </div>
-      }
+        {/* } */}
     </div>
   );
 }
