@@ -4,14 +4,16 @@ import './App.css';
 
 import paris from './assets/videos/Paris.mp4';
 import checked from './assets/icons/checked.png';
-import wrong from '.assets/icons/wrong.png';
+import wrong from './assets/icons/wrong.png';
 
 
 function App() {
   const [firstQuestionVisible, setFirstQuestionVisible] = useState(false);
   const [isFirstQuestionAnswered, setIsFirstQuestionAnswered] = useState(false);
+  const [isFirstQuestionRight, setIsFirstQuestionRight] = useState(false);
+  const [score, setScore] = useState<number>(0);
   const player = useRef<HTMLVideoElement>(null);
-
+  var points = 0;
 
   function handleQuiz () {
     if (player.current){
@@ -21,16 +23,23 @@ function App() {
       } 
     }
   }
-  function wrongAnswerSelectedFirstQuestion () {
-    setIsFirstQuestionAnswered(true);
-    setFirstQuestionVisible(false);
+  function wrongAnswerSelected () {
+    if(isFirstQuestionAnswered === false) {
+      setIsFirstQuestionAnswered(true);
+      setFirstQuestionVisible(false);
+    }
     if (player.current){
-    player.current.play();
+      player.current.play();
     }
   }
-  function rightAnswerSelectedFirstQuestion () {
-    setIsFirstQuestionAnswered(true);
-    setFirstQuestionVisible(false);
+  function rightAnswerSelected () {
+    if(isFirstQuestionAnswered === false) {
+      setIsFirstQuestionAnswered(true);
+      setFirstQuestionVisible(false);
+    }
+    setIsFirstQuestionRight(true);
+    points++;
+    setScore(points);
     if (player.current){
       player.current.play();
       }
@@ -48,16 +57,17 @@ function App() {
           <div className="question">
             <p className="question-label">Quanto tempo durou a revolução francesa?</p>
             <div className='buttons-container'>
-              <button className="options" onClick={wrongAnswerSelectedFirstQuestion}>A. 12 anos</button>
-              <button className="options" onClick={rightAnswerSelectedFirstQuestion}>B. 10 anos</button>
-              <button className="options" onClick={wrongAnswerSelectedFirstQuestion}>C. 20 anos</button>
-              <button className="options" onClick={wrongAnswerSelectedFirstQuestion}>D. 8 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>A. 12 anos</button>
+              <button className="options" onClick={rightAnswerSelected}>B. 10 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>C. 20 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>D. 8 anos</button>
             </div>
           </div>
         </div>
       }
       <div className="questions-list">
-        <p className="questions-list-label">Pergunta 1 {isFirstQuestionAnswered ? <img className="answer-icon" src={checked} alt="question right"/> : null}</p>
+        <p className="questions-list-label">Pontos: {score}</p>
+        <p className="questions-list-label">Pergunta 1 {isFirstQuestionAnswered ? <img className="answer-icon" src={isFirstQuestionRight ? checked : wrong} alt="question right"/> : null}</p>
         <p className="questions-list-label">Pergunta 2</p>
         <p className="questions-list-label">Pergunta 3</p>
       </div>
