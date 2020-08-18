@@ -3,30 +3,33 @@ import React, { useState, useRef } from 'react';
 import './App.css';
 
 import paris from './assets/videos/Paris.mp4';
+import checked from './assets/icons/checked.png';
+import wrong from '.assets/icons/wrong.png';
 
 
 function App() {
   const [firstQuestionVisible, setFirstQuestionVisible] = useState(false);
-  const [isFirstQuestion, setIsFirstQuestion] = useState(true);
+  const [isFirstQuestionAnswered, setIsFirstQuestionAnswered] = useState(false);
   const player = useRef<HTMLVideoElement>(null);
 
 
   function handleQuiz () {
     if (player.current){
-      if(player.current.currentTime >= 5 && firstQuestionVisible === false && isFirstQuestion === true) {
-        setIsFirstQuestion(false);
+      if(player.current.currentTime >= 5 && firstQuestionVisible === false && isFirstQuestionAnswered === false) {
         setFirstQuestionVisible(true);
         player.current.pause();
       } 
     }
   }
-  function wrongAnwserSelected () {
+  function wrongAnswerSelected () {
+    setIsFirstQuestionAnswered(true);
     setFirstQuestionVisible(false);
     if (player.current){
     player.current.play();
     }
   }
-  function rightAnwserSelected () {
+  function rightAnswerSelected () {
+    setIsFirstQuestionAnswered(true);
     setFirstQuestionVisible(false);
     if (player.current){
       player.current.play();
@@ -45,14 +48,19 @@ function App() {
           <div className="question">
             <p className="question-label">Quanto tempo durou a revolução francesa?</p>
             <div className='buttons-container'>
-              <button className="options" onClick={wrongAnwserSelected}>A. 12 anos</button>
-              <button className="options" onClick={rightAnwserSelected}>B. 10 anos</button>
-              <button className="options" onClick={wrongAnwserSelected}>C. 20 anos</button>
-              <button className="options" onClick={wrongAnwserSelected}>D. 8 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>A. 12 anos</button>
+              <button className="options" onClick={rightAnswerSelected}>B. 10 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>C. 20 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>D. 8 anos</button>
             </div>
           </div>
         </div>
       }
+      <div className="questions-list">
+        <p className="questions-list-label">Pergunta 1 {isFirstQuestionAnswered ? <img className="answer-icon" src={checked} alt="question right"/> : null}</p>
+        <p className="questions-list-label">Pergunta 2</p>
+        <p className="questions-list-label">Pergunta 3</p>
+      </div>
     </div>
   );
 }

@@ -76,6 +76,17 @@
     color: #000;
     border-color: #000
 }
+.questions-list {
+    width: 10rem;
+    margin-top: 16rem;
+}
+.questions-list-label {
+    font-family: 'Raleway';
+    color: #ffffff;
+    margin-right: 2rem;
+    align-self: center;
+    justify-self: center;
+}
 
 
 
