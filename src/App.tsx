@@ -1,14 +1,16 @@
 import React, { useState, useRef } from 'react';
-import ReactPlayer, { ReactPlayerProps } from 'react-player';
 
 import './App.css';
 
+import paris from './assets/videos/paris.mp4';
+
+
 function App() {
-  const [play, setPlay] = useState(false);
+  // const [play, setPlay] = useState(false);
   const [questionVisible, setQuestionVisible] = useState(false);
 
 
-  const player = useRef<ReactPlayer>(null);
+  const player = useRef<HTMLVideoElement>(null);
 
 
   function handleQuiz () {
@@ -20,18 +22,18 @@ function App() {
   return (
     <div className="container">
       <div className="video-container">
-        <ReactPlayer url="https://www.youtube.com/watch?v=NU2GY8_rX60" playing={play} onPlay={() => !setPlay} controls={true} width="50%" onProgress={handleQuiz} progressInterval={1000} ref={player}/>
+        <video controls src={paris} ref={player}/>
       </div>
       {!questionVisible ? null :
-      <div className="quiz-container">
-        <div className="question">
-          <p className="question-label">Qual o primeiro nome do Jacquin?</p>
-          <button className="options">A. Jacques</button>
-          <button className="options">B. Pierre</button>
-          <button className="options">C. Erick</button>
-          <button className="options">D. Genevieve</button>
+        <div className="quiz-container">
+          <div className="question">
+            <p className="question-label">Qual o primeiro nome do Jacquin?</p>
+            <button className="options">A. Jacques</button>
+            <button className="options">B. Pierre</button>
+            <button className="options">C. Erick</button>
+            <button className="options">D. Genevieve</button>
+          </div>
         </div>
-      </div>
       }
     </div>
   );
