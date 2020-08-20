@@ -9,8 +9,12 @@ import wrong from './assets/icons/wrong.png';
 
 function App() {
   const [firstQuestionVisible, setFirstQuestionVisible] = useState(false);
+  const [secondQuestionVisible, setSecondQuestionVisible] = useState(false);
   const [isFirstQuestionAnswered, setIsFirstQuestionAnswered] = useState(false);
+  const [isSecondQuestionAnswered, setIsSecondQuestionAnswered] = useState(false);
   const [isFirstQuestionRight, setIsFirstQuestionRight] = useState(false);
+  const [isSecondQuestionRight, setIsSecondQuestionRight] = useState(false);
+  const [question, setQuestion] = useState<number>(1)
   const [score, setScore] = useState<number>(0);
   const player = useRef<HTMLVideoElement>(null);
   var points = 0;
@@ -20,6 +24,10 @@ function App() {
       if(player.current.currentTime >= 5 && firstQuestionVisible === false && isFirstQuestionAnswered === false) {
         setFirstQuestionVisible(true);
         player.current.pause();
+      }
+      if(player.current.currentTime >= 10 && secondQuestionVisible === false && isSecondQuestionAnswered === false) {
+        setSecondQuestionVisible(true);
+        player.current.pause();
       } 
     }
   }
@@ -27,6 +35,12 @@ function App() {
     if(isFirstQuestionAnswered === false) {
       setIsFirstQuestionAnswered(true);
       setFirstQuestionVisible(false);
+      setQuestion(2);
+    }
+    if(isSecondQuestionAnswered === false && question === 2){
+      setIsSecondQuestionAnswered(true);
+      setSecondQuestionVisible(false);
+      setQuestion(3);
     }
     if (player.current){
       player.current.play();
@@ -36,8 +50,15 @@ function App() {
     if(isFirstQuestionAnswered === false) {
       setIsFirstQuestionAnswered(true);
       setFirstQuestionVisible(false);
+      setIsFirstQuestionRight(true);
+      setQuestion(2);
     }
-    setIsFirstQuestionRight(true);
+    if(isSecondQuestionAnswered === false && question === 2){
+      setIsSecondQuestionAnswered(true);
+      setSecondQuestionVisible(false);
+      setIsSecondQuestionRight(true);
+      setQuestion(3);
+    }
     points++;
     setScore(points);
     if (player.current){
@@ -57,10 +78,23 @@ function App() {
           <div className="question">
             <p className="question-label">Quanto tempo durou a revolução francesa?</p>
             <div className='buttons-container'>
-              <button className="options" onClick={wrongAnswerSelected}>A. 12 anos</button>
-              <button className="options" onClick={rightAnswerSelected}>B. 10 anos</button>
-              <button className="options" onClick={wrongAnswerSelected}>C. 20 anos</button>
-              <button className="options" onClick={wrongAnswerSelected}>D. 8 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>12 anos</button>
+              <button className="options" onClick={rightAnswerSelected}>10 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>20 anos</button>
+              <button className="options" onClick={wrongAnswerSelected}>8 anos</button>
+            </div>
+          </div>
+        </div>
+      }
+      {!secondQuestionVisible ? null :
+        <div className="quiz-container">
+          <div className="question">
+            <p className="question-label">Qual foi o último rei da França antes da revolução francesa?</p>
+            <div className='buttons-container'>
+              <button className="options" onClick={rightAnswerSelected}>Luis XVI</button>
+              <button className="options" onClick={wrongAnswerSelected}>Napoleão I</button>
+              <button className="options" onClick={wrongAnswerSelected}>Henrique IV</button>
+              <button className="options" onClick={wrongAnswerSelected}>Carlos IX</button>
             </div>
           </div>
         </div>
@@ -68,7 +102,7 @@ function App() {
       <div className="questions-list">
         <p className="questions-list-label">Pontos: {score}</p>
         <p className="questions-list-label">Pergunta 1 {isFirstQuestionAnswered ? <img className="answer-icon" src={isFirstQuestionRight ? checked : wrong} alt="question right"/> : null}</p>
-        <p className="questions-list-label">Pergunta 2</p>
+        <p className="questions-list-label">Pergunta 2 {isSecondQuestionAnswered ? <img className="answer-icon" src={isSecondQuestionRight ? checked : wrong} alt="question right"/> : null}</p>
         <p className="questions-list-label">Pergunta 3</p>
       </div>
     </div>
