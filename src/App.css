@@ -87,6 +87,9 @@
     align-self: center;
     justify-self: center;
 }
+.score-label {
+    margin-top: 10rem;
+}
 
 
 
