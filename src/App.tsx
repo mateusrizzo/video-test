@@ -132,12 +132,10 @@ function App() {
       {!thirdQuestionVisible ? null :
         <div className="quiz-container">
           <div className="question">
-            <p className="question-label">Em que ano ocorreu a Queda da Bastilha?</p>
+            <p className="question-label">A Queda da Bastilha ocorreu em 1789. Verdadeiro ou falso?</p>
             <div className='buttons-container'>
-              <button className="options" onClick={wrongAnswerSelected}>1780</button>
-              <button className="options" onClick={wrongAnswerSelected}>1792</button>
-              <button className="options" onClick={rightAnswerSelected}>1789</button>
-              <button className="options" onClick={wrongAnswerSelected}>1775</button>
+              <button className="options" onClick={rightAnswerSelected}>Verdadeiro</button>
+              <button className="options" onClick={wrongAnswerSelected}>Falso</button>
             </div>
           </div>
         </div>
