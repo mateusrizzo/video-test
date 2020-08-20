@@ -68,6 +68,7 @@ function App() {
       setFirstQuestionVisible(false);
       setIsFirstQuestionRight(true);
       setQuestion(2);
+      points=score;
       points++;
       setScore(points);
     }
@@ -76,6 +77,7 @@ function App() {
       setSecondQuestionVisible(false);
       setIsSecondQuestionRight(true);
       setQuestion(3);
+      points=score;
       points++;
       setScore(points);
     }
@@ -84,6 +86,7 @@ function App() {
       setThirdQuestionVisible(false);
       setIsThirdQuestionRight(true);
       setQuestion(4);
+      points=score;
       points++;
       setScore(points);
     }
